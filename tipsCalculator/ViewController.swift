@@ -37,12 +37,17 @@ class ViewController: UIViewController {
         avgOutputLabel.text = "0"
         numOfPeopleInput.text = "1"
         
+        numOfPeopleInput.addTarget(self, action: #selector(changeFromTextField(tfInput:)), for: .editingChanged)
         
     }
     
     @IBAction func ChangeStepperValue(_ sender: UIStepper) {
         
         numOfPeopleInput.text = Int(sender.value).description
+    }
+    
+    @objc func changeFromTextField(tfInput: UITextField){
+        self.peopleStepper.value = Double(tfInput.text!) ?? 1.0
     }
     
     @IBAction func deleteAll(_ sender: UIButton) {
